@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+
+# Venv
+.venv/
+
+# States cục bộ
+monitor/state/
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db

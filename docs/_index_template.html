@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>126V Algorithm Radar</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; padding: 0; background: #0b0f14; color: #e5e7eb; }
+    header { padding: 24px; background: #111827; border-bottom: 1px solid #1f2937; }
+    h1 { margin: 0; font-size: 20px; }
+    main { max-width: 1000px; margin: 24px auto; padding: 0 16px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+    .card { background: #0f172a; border: 1px solid #1f2937; border-radius: 10px; padding: 16px; }
+    .card h3 { margin: 8px 0; font-size: 18px; }
+    .muted { color: #9ca3af; }
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; border: 1px solid #374151; font-size: 12px; margin-right: 6px; }
+    a { color: #93c5fd; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer { text-align: center; color: #6b7280; padding: 40px; }
+    .diff { white-space: pre-wrap; background: #0b1220; padding: 8px; border-radius: 8px; overflow: auto; max-height: 280px; font-family: ui-monospace, Menlo, Monaco, Consolas, monospace; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>126V Algorithm Radar — cập nhật gần nhất: {{ generated_at }}</h1>
+  </header>
+  <main>
+    <p class="muted">Nguồn chính thức được gắn thẻ <code>official</code>. Nguồn cộng đồng nhằm “bắt tín hiệu” sớm, cần kiểm chứng trước khi thay đổi chiến lược.</p>
+    <div class="grid">
+      {% for ev in events %}
+      <div class="card">
+        <div>
+          {% for t in ev.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+        </div>
+        <h3><a href="{{ ev.url }}" target="_blank" rel="noopener">{{ ev.title }}</a></h3>
+        <div class="muted">{{ ev.date }}</div>
+        {% if ev.summary %}<p>{{ ev.summary }}</p>{% endif %}
+        {% if ev.diff %}<div class="diff">{{ ev.diff }}</div>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+  <footer>Made by 126V • Tự động hoá Python + GitHub Actions + Pages</footer>
+</body>
+</html>

@@ -1,0 +1,103 @@
+# Thêm/bớt nguồn theo nhu cầu của 126V
+# type: rss | page
+# tags: [linkedin|instagram|official|community]
+
+sources:
+  - id: linkedin_api_changes
+    name: LinkedIn Marketing API – Recent Changes
+    type: page
+    url: https://learn.microsoft.com/en-us/linkedin/marketing/integrations/recent-changes?view=li-lms-2025-08
+    tags: [linkedin, official]
+  - id: meta_transparency_api
+    name: Meta Transparency Center API Reference
+    type: page
+    url: https://transparency.fb.com/en-gb/transparency/tools/api/
+    tags: [instagram, official]
+  - id: instagram_developer_graph
+    name: Instagram Graph API – Developer Documentation
+    type: page
+    url: https://developers.facebook.com/docs/instagram-api/
+    tags: [instagram, official]
+  - id: linkedin_api_changes
+    name: LinkedIn Marketing API - Recent Changes
+    type: page
+    url: https://learn.microsoft.com/en-us/linkedin/marketing/integrations/recent-changes?view=li-lms-2025-08
+    tags: [linkedin, official]
+
+  - id: linkedin_versioning
+    name: LinkedIn Marketing API - Versioning
+    type: page
+    url: https://learn.microsoft.com/en-us/linkedin/marketing/versioning?view=li-lms-2025-02
+    tags: [linkedin, official]
+  - id: rvdb_algorithm_reports
+    name: Algorithm InSights Report 2025 – Richard van der Blom (Gumroad)
+    type: page
+    url: https://richardvanderblom.gumroad.com/l/Algorithm-Insights-2025
+    tags: [linkedin, research]
+  - id: authoredup_analytics_api
+    name: AuthoredUp Analytics API Documentation
+    type: page
+    url: https://authoredup.com/docs/api
+    tags: [linkedin, research]
+  - id: sprinklr_enterprise_api
+    name: Sprinklr Platform API – Monitoring & Insights
+    type: page
+    url: https://www.sprinklr.com/developers/api-documentation/
+    tags: [linkedin, instagram, research]
+
+  - id: linkedin_product_updates
+    name: LinkedIn Marketing Solutions - Product Updates
+    type: page
+    url: https://business.linkedin.com/marketing-solutions/product-updates
+    tags: [linkedin, official]
+
+  - id: meta_newsroom_instagram
+    name: Meta Newsroom - Instagram
+    type: page
+    url: https://about.fb.com/news/category/technologies/instagram/
+    tags: [instagram, official]
+
+  - id: meta_ppcland_simplifies_apis
+    name: PPC Land - Meta simplifies Instagram & Marketing API (summary)
+    type: page
+    url: https://ppc.land/meta-simplifies-instagram-and-marketing-api-integrations/
+    tags: [instagram, community]
+
+  - id: reddit_instagram_marketing
+    name: r/InstagramMarketing – Reddit Community
+    type: page
+    url: https://www.reddit.com/r/InstagramMarketing/
+    tags: [instagram, community]
+  - id: reddit_linkedin_marketing
+    name: r/LinkedInMarketing – Reddit Community
+    type: page
+    url: https://www.reddit.com/r/LinkedInMarketing/
+    tags: [linkedin, community]
+  - id: smexaminer_newsletter
+    name: Social Media Examiner Newsletter
+    type: page
+    url: https://www.socialmediaexaminer.com/newsletter/
+    tags: [linkedin, instagram, community]
+  - id: zoomph_views_transition
+    name: Zoomph - Instagram metric Views transition (Apr 2025)
+    type: page
+    url: https://help.zoomph.com/instagram-metric-deprecation-views-transition-april-2025
+    tags: [instagram, community]
+
+  - id: later_instagram_algorithm
+    name: Later - How the Instagram algorithm works (2025)
+    type: page
+    url: https://later.com/blog/how-instagram-algorithm-works/
+    tags: [instagram, community]
+
+  - id: reddit_instagrammarketing_top_day
+    name: Reddit r/InstagramMarketing (top/day)
+    type: rss
+    url: https://www.reddit.com/r/InstagramMarketing/top/.rss?sort=top&t=day
+    tags: [instagram, community]
+
+  - id: reddit_socialmedia_top_day
+    name: Reddit r/socialmedia (top/day)
+    type: rss
+    url: https://www.reddit.com/r/socialmedia/top/.rss?sort=top&t=day
+    tags: [community]

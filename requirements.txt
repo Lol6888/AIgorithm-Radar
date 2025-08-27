@@ -1,0 +1,13 @@
+feedparser
+requests
+beautifulsoup4
+lxml
+trafilatura
+PyYAML
+jinja2
+python-dateutil
+pandas
+numpy
+ruptures
+matplotlib
+tqdm
