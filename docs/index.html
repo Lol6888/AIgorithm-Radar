@@ -1,67 +1,181 @@
 <!doctype html>
-<html lang="vi">
+<html lang="vi" data-theme="dark">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>126V Algorithm Radar</title>
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; padding: 0; background: #0b0f14; color: #e5e7eb; }
-    header { padding: 24px; background: #111827; border-bottom: 1px solid #1f2937; }
-    h1 { margin: 0; font-size: 20px; }
-    main { max-width: 1000px; margin: 24px auto; padding: 0 16px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
-    .card { background: #0f172a; border: 1px solid #1f2937; border-radius: 10px; padding: 16px; }
-    .card h3 { margin: 8px 0; font-size: 18px; }
-    .muted { color: #9ca3af; }
-    .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; border: 1px solid #374151; font-size: 12px; margin-right: 6px; }
-    a { color: #93c5fd; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    footer { text-align: center; color: #6b7280; padding: 40px; }
-    .diff { white-space: pre-wrap; background: #0b1220; padding: 8px; border-radius: 8px; overflow: auto; max-height: 280px; font-family: ui-monospace, Menlo, Monaco, Consolas, monospace; font-size: 12px; }
+    :root{
+      --bg:#0b0f14; --panel:#0f172a; --border:#1f2937; --text:#e5e7eb; --muted:#9ca3af; --link:#93c5fd;
+      --chip:#111827; --chip-bd:#2b3443; --accent:#60a5fa;
+    }
+    [data-theme="light"]{
+      --bg:#f7f8fb; --panel:#ffffff; --border:#e5e7eb; --text:#111827; --muted:#6b7280; --link:#1d4ed8;
+      --chip:#f3f4f6; --chip-bd:#e5e7eb; --accent:#2563eb;
+    }
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;}
+    header{padding:18px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:10}
+    .wrap{max-width:1100px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    h1{font-size:18px;margin:0;white-space:nowrap}
+    .muted{color:var(--muted)}
+    .controls{display:flex;gap:8px;flex:1;flex-wrap:wrap}
+    input[type="search"]{flex:1;min-width:220px;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
+    .btn{padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--text);cursor:pointer}
+    .btn.active{outline:2px solid var(--accent)}
+    .grid{max-width:1100px;margin:18px auto;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px;display:flex;gap:10px;flex-direction:column}
+    .title{font-size:16px;margin:4px 0}
+    .chip{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;border:1px solid var(--chip-bd);background:var(--chip);font-size:12px;margin-right:6px;color:var(--muted)}
+    a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+    .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .diff{white-space:pre-wrap;background:transparent;border:1px dashed var(--border);padding:8px;border-radius:12px;max-height:260px;overflow:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px}
+    footer{text-align:center;color:var(--muted);padding:28px}
+    .lang{display:inline-flex;border:1px solid var(--border);border-radius:999px;overflow:hidden}
+    .lang button{border:0;background:transparent;padding:8px 12px;cursor:pointer;color:var(--muted)}
+    .lang button.active{background:var(--panel);color:var(--text);outline:2px solid var(--accent)}
+    .toggle{border:1px solid var(--border);padding:8px 12px;border-radius:10px;background:var(--panel);cursor:pointer}
+    .hide{display:none}
   </style>
 </head>
 <body>
   <header>
-    <h1>126V Algorithm Radar — cập nhật gần nhất: 2025-08-27 04:41 UTC</h1>
-  </header>
-  <main>
-    <p class="muted">Nguồn chính thức được gắn thẻ <code>official</code>. Nguồn cộng đồng nhằm “bắt tín hiệu” sớm, cần kiểm chứng trước khi thay đổi chiến lược.</p>
-    <div class="grid">
-      
-      <div class="card">
-        <div>
-          <span class="tag">linkedin</span><span class="tag">community</span>
+    <div class="wrap">
+      <h1>126V Algorithm Radar</h1>
+      <div class="controls">
+        <input id="q" type="search" placeholder="Tìm kiếm / Search…" />
+        <div class="lang">
+          <button id="lang-vi" aria-label="Vietnamese">VI</button>
+          <button id="lang-en" aria-label="English" class="active">EN</button>
         </div>
-        <h3><a href="https://www.reddit.com/r/LinkedInMarketing/" target="_blank" rel="noopener">r/LinkedInMarketing – Reddit Community</a></h3>
-        <div class="muted">2025-08-27 04:40 UTC</div>
-        <p>You agree that use of this site constitutes acceptance of Reddit’s User Agreement and acknowledge our Privacy Policy.</p>
+        <button id="theme" class="toggle" title="Dark/Light">🌓</button>
+        <button id="toggle-diff" class="toggle">Diff</button>
+        <button id="sort" class="toggle">Sort: Newest</button>
+      </div>
+      <div class="muted">Last build: 2025-08-27 05:25 UTC</div>
+    </div>
+  </header>
+
+  <main class="grid" id="grid">
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="r/InstagramMarketing – Reddit Community"
+             data-title-vi="r/InstagramMarketing – Reddit Community"
+             data-summary-en="A couple I know has seen my social media work on different platforms and want to hire me, mostly for reels, for the coffee shop they own and are only wanting a couple a week. What would you charge for this? The reels I usually make are NOT super production heavy and are mainly short comedy skits I film on my iphone. I usually average 4k-25k views with a solid amount of organic engagement. I also live in the midwest so marketing/social media is not super lucrative compared to cities so I’m trying"
+             data-summary-vi="A couple I know has seen my social media work on different platforms and want to hire me, mostly for reels, for the coffee shop they own and are only wanting a couple a week. What would you charge for this? The reels I usually make are NOT super production heavy and are mainly short comedy skits I film on my iphone. I usually average 4k-25k views with a solid amount of organic engagement. I also live in the midwest so marketing/social media is not super lucrative compared to cities so I’m trying"
+             data-date="2025-08-27 05:25 UTC">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
+      </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
+      
+      <details class="diff-wrap">
+        <summary>Show diff</summary>
+        <div class="diff">--- 
++++ 
+@@ -2,14 +2,13 @@
+ The CEO of Instagram just confirmed it: hashtags are no longer the magic growth trick they used to be. They barely move the needle for reach anymore.
+ If you want to grow faster on Instagram in 2025, here’s what you should be doing instead:
+ -
+ Profile Settings → Account Privacy → Turn ON “Allow public photos and videos to appear on Google.” This helps your content show up outside Instagram’s walls
+ -
+ Profile Settings → Media Quality → Turn ON “Upload at highest quality.” Instagram prioritizes crisp, high-res uploads in recommendations.
+ -
+ Before posting a Reel → More Options → Turn ON “Recommend on Facebook” and “Recommend on Explore.” These push your content to more viewers without them following you.
+ -
+ On desktop → Edit Profile → Enable “Suggest your profile to art lovers” (or relevant audience setting for your niche). This makes Instagram actively promote your profile to people who care about your content’s topic.
+ TL;DR: Hashtags aren’t dead because of a conspiracy — they’re just not how Instagram finds and recommends posts anymore. Turn on these settings and let the algorithm actually work for you.
+ Want more than just reach? At Layba.gg, we help small creators monetize their content across Instagram, TikTok, and YouTube Shorts. Join our creator community, learn growth strategies like this, and start turning your audience into actual income.
+-to anybody who's into poetries Hie I'm @theshrishtieffect on instagram. Please check it out if have a minute. And follow if you like the vibe.
+-Thanks :)
++What do I do to hide my posts from my friends and have reach with other people?</div>
+      </details>
+      
+    </article>
+    
+    <article class="card" data-tags="linkedin community"
+             data-title-en="r/LinkedInMarketing – Reddit Community"
+             data-title-vi="r/LinkedInMarketing – Reddit Community"
+             data-summary-en="You agree that use of this site constitutes acceptance of Reddit’s User Agreement and acknowledge our Privacy Policy."
+             data-summary-vi="You agree that use of this site constitutes acceptance of Reddit’s User Agreement and acknowledge our Privacy Policy."
+             data-date="2025-08-27 04:40 UTC">
+      <div class="row">
+        <span class="chip">#linkedin</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
+      </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/LinkedInMarketing/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
+      
+      <details class="diff-wrap">
+        <summary>Show diff</summary>
         <div class="diff">--- 
 +++ 
 @@ -0,0 +1 @@
 +You agree that use of this site constitutes acceptance of Reddit’s User Agreement and acknowledge our Privacy Policy.</div>
-      </div>
+      </details>
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">official</span>
-        </div>
-        <h3><a href="https://developers.facebook.com/docs/instagram-api/" target="_blank" rel="noopener">Instagram Graph API – Developer Documentation</a></h3>
-        <div class="muted">2025-08-27 04:37 UTC</div>
-        <p>Với API Instagram qua phương thức Đăng nhập bằng Facebook, Tài khoản công việc trên Instagram - Doanh nghiệp và Người sáng tạo nội dung - có thể dùng ứng dụng của bạn để quản lý sự hiện diện của họ trên Instagram. Họ có thể dùng API này để lấy và đăng file phương tiện, quản lý cũng như trả lời bình luận về file phương tiện, xác định file phương tiện mà người dùng khác trên Instagram đã @nhắc đến họ, tìm file phương tiện có hashtag, lấy số liệu và siêu dữ liệu cơ bản về những Doanh nghiệp và Ngườ</p>
+    </article>
+    
+    <article class="card" data-tags="instagram official"
+             data-title-en="Instagram Graph API – Developer Documentation"
+             data-title-vi="Instagram Graph API – Developer Documentation"
+             data-summary-en="Với API Instagram qua phương thức Đăng nhập bằng Facebook, Tài khoản công việc trên Instagram - Doanh nghiệp và Người sáng tạo nội dung - có thể dùng ứng dụng của bạn để quản lý sự hiện diện của họ trên Instagram. Họ có thể dùng API này để lấy và đăng file phương tiện, quản lý cũng như trả lời bình luận về file phương tiện, xác định file phương tiện mà người dùng khác trên Instagram đã @nhắc đến họ, tìm file phương tiện có hashtag, lấy số liệu và siêu dữ liệu cơ bản về những Doanh nghiệp và Ngườ"
+             data-summary-vi="Với API Instagram qua phương thức Đăng nhập bằng Facebook, Tài khoản công việc trên Instagram - Doanh nghiệp và Người sáng tạo nội dung - có thể dùng ứng dụng của bạn để quản lý sự hiện diện của họ trên Instagram. Họ có thể dùng API này để lấy và đăng file phương tiện, quản lý cũng như trả lời bình luận về file phương tiện, xác định file phương tiện mà người dùng khác trên Instagram đã @nhắc đến họ, tìm file phương tiện có hashtag, lấy số liệu và siêu dữ liệu cơ bản về những Doanh nghiệp và Ngườ"
+             data-date="2025-08-27 04:37 UTC">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#official</span>
+        <span class="chip">✅ official</span>
+      </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://developers.facebook.com/docs/instagram-api/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
+      
+      <details class="diff-wrap">
+        <summary>Show diff</summary>
         <div class="diff">--- 
 +++ 
 @@ -0,0 +1,2 @@
 +Với API Instagram qua phương thức Đăng nhập bằng Facebook, Tài khoản công việc trên Instagram - Doanh nghiệp và Người sáng tạo nội dung - có thể dùng ứng dụng của bạn để quản lý sự hiện diện của họ trên Instagram. Họ có thể dùng API này để lấy và đăng file phương tiện, quản lý cũng như trả lời bình luận về file phương tiện, xác định file phương tiện mà người dùng khác trên Instagram đã @nhắc đến họ, tìm file phương tiện có hashtag, lấy số liệu và siêu dữ liệu cơ bản về những Doanh nghiệp và Người sáng tạo nội dung khác trên Instagram.
 +Tiếp theo, hãy tìm hiểu về các khái niệm cốt lõi, thành phần và yêu cầu về cách sử dụng dành cho API Instagram trong phần Tổng quan.</div>
-      </div>
+      </details>
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/" target="_blank" rel="noopener">r/InstagramMarketing – Reddit Community</a></h3>
-        <div class="muted">2025-08-27 04:38 UTC</div>
-        <p>A couple I know has seen my social media work on different platforms and want to hire me, mostly for reels, for the coffee shop they own and are only wanting a couple a week. What would you charge for this? The reels I usually make are NOT super production heavy and are mainly short comedy skits I film on my iphone. I usually average 4k-25k views with a solid amount of organic engagement. I also live in the midwest so marketing/social media is not super lucrative compared to cities so I’m trying</p>
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="r/InstagramMarketing – Reddit Community"
+             data-title-vi="r/InstagramMarketing – Reddit Community"
+             data-summary-en="A couple I know has seen my social media work on different platforms and want to hire me, mostly for reels, for the coffee shop they own and are only wanting a couple a week. What would you charge for this? The reels I usually make are NOT super production heavy and are mainly short comedy skits I film on my iphone. I usually average 4k-25k views with a solid amount of organic engagement. I also live in the midwest so marketing/social media is not super lucrative compared to cities so I’m trying"
+             data-summary-vi="A couple I know has seen my social media work on different platforms and want to hire me, mostly for reels, for the coffee shop they own and are only wanting a couple a week. What would you charge for this? The reels I usually make are NOT super production heavy and are mainly short comedy skits I film on my iphone. I usually average 4k-25k views with a solid amount of organic engagement. I also live in the midwest so marketing/social media is not super lucrative compared to cities so I’m trying"
+             data-date="2025-08-27 04:38 UTC">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
+      </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
+      
+      <details class="diff-wrap">
+        <summary>Show diff</summary>
         <div class="diff">--- 
 +++ 
 @@ -0,0 +1,15 @@
@@ -80,15 +194,30 @@
 +Want more than just reach? At Layba.gg, we help small creators monetize their content across Instagram, TikTok, and YouTube Shorts. Join our creator community, learn growth strategies like this, and start turning your audience into actual income.
 +to anybody who's into poetries Hie I'm @theshrishtieffect on instagram. Please check it out if have a minute. And follow if you like the vibe.
 +Thanks :)</div>
-      </div>
+      </details>
       
-      <div class="card">
-        <div>
-          <span class="tag">linkedin</span><span class="tag">official</span>
-        </div>
-        <h3><a href="https://learn.microsoft.com/en-us/linkedin/marketing/integrations/recent-changes?view=li-lms-2025-08" target="_blank" rel="noopener">LinkedIn Marketing API - Recent Changes</a></h3>
-        <div class="muted">2025-08-27 04:25 UTC</div>
-        <p>Note Access to this page requires authorization. You can try signing in or changing directories. Access to this page requires authorization. You can try changing directories. Warning Deprecation Notice The Marketing Version 202408 (Marketing August 2024) has been sunset. We recommend that you migrate to the latest versioned APIs to avoid disruptions. See the Migration page for more details.</p>
+    </article>
+    
+    <article class="card" data-tags="linkedin official"
+             data-title-en="LinkedIn Marketing API - Recent Changes"
+             data-title-vi="LinkedIn Marketing API - Recent Changes"
+             data-summary-en="Note Access to this page requires authorization. You can try signing in or changing directories. Access to this page requires authorization. You can try changing directories. Warning Deprecation Notice The Marketing Version 202408 (Marketing August 2024) has been sunset. We recommend that you migrate to the latest versioned APIs to avoid disruptions. See the Migration page for more details."
+             data-summary-vi="Note Access to this page requires authorization. You can try signing in or changing directories. Access to this page requires authorization. You can try changing directories. Warning Deprecation Notice The Marketing Version 202408 (Marketing August 2024) has been sunset. We recommend that you migrate to the latest versioned APIs to avoid disruptions. See the Migration page for more details."
+             data-date="2025-08-27 04:25 UTC">
+      <div class="row">
+        <span class="chip">#linkedin</span><span class="chip">#official</span>
+        <span class="chip">✅ official</span>
+      </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://learn.microsoft.com/en-us/linkedin/marketing/integrations/recent-changes?view=li-lms-2025-08" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
+      
+      <details class="diff-wrap">
+        <summary>Show diff</summary>
         <div class="diff">--- 
 +++ 
 @@ -0,0 +1,962 @@
@@ -292,15 +421,30 @@
 +New Content APIs that simplify the content creation experience and save you time We introduced four new Content APIs that enable you to build quicker and to adopt the latest formats easier: Images, Videos, Post, and Creatives. With the new APIs, weâve reduced the steps to upload creative assets and create posts; and the APIs are built to support your workflow. Get started with the new migration guide. Make sure to migrate to the new APIs before February 28, 2023 when we will sunset the Shares and UGC APIs.
 +Archived Marketing API Changes
 +To learn more about the Marketing API changes from November 2022 and earlier, refer to:</div>
-      </div>
+      </details>
       
-      <div class="card">
-        <div>
-          <span class="tag">linkedin</span><span class="tag">official</span>
-        </div>
-        <h3><a href="https://learn.microsoft.com/en-us/linkedin/marketing/versioning?view=li-lms-2025-02" target="_blank" rel="noopener">LinkedIn Marketing API - Versioning</a></h3>
-        <div class="muted">2025-08-27 04:25 UTC</div>
-        <p>Note Access to this page requires authorization. You can try signing in or changing directories. Access to this page requires authorization. You can try changing directories. Warning Deprecation Notice The Marketing Version 202408 (Marketing August 2024) has been sunset. We recommend that you migrate to the latest versioned APIs to avoid disruptions. See the Migration page for more details.</p>
+    </article>
+    
+    <article class="card" data-tags="linkedin official"
+             data-title-en="LinkedIn Marketing API - Versioning"
+             data-title-vi="LinkedIn Marketing API - Versioning"
+             data-summary-en="Note Access to this page requires authorization. You can try signing in or changing directories. Access to this page requires authorization. You can try changing directories. Warning Deprecation Notice The Marketing Version 202408 (Marketing August 2024) has been sunset. We recommend that you migrate to the latest versioned APIs to avoid disruptions. See the Migration page for more details."
+             data-summary-vi="Note Access to this page requires authorization. You can try signing in or changing directories. Access to this page requires authorization. You can try changing directories. Warning Deprecation Notice The Marketing Version 202408 (Marketing August 2024) has been sunset. We recommend that you migrate to the latest versioned APIs to avoid disruptions. See the Migration page for more details."
+             data-date="2025-08-27 04:25 UTC">
+      <div class="row">
+        <span class="chip">#linkedin</span><span class="chip">#official</span>
+        <span class="chip">✅ official</span>
+      </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://learn.microsoft.com/en-us/linkedin/marketing/versioning?view=li-lms-2025-02" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
+      
+      <details class="diff-wrap">
+        <summary>Show diff</summary>
         <div class="diff">--- 
 +++ 
 @@ -0,0 +1,98 @@
@@ -402,44 +546,89 @@
 +An error response is returned when the version header is missing in the request. Refer to Sample Response here
 +What happens if a deprecated Version Header is used in the request?
 +An error response is returned when the version header is deprecated (e.g., 202401). Refer to sample response here</div>
-      </div>
+      </details>
       
-      <div class="card">
-        <div>
-          <span class="tag">linkedin</span><span class="tag">official</span>
-        </div>
-        <h3><a href="https://business.linkedin.com/marketing-solutions/product-updates" target="_blank" rel="noopener">LinkedIn Marketing Solutions - Product Updates</a></h3>
-        <div class="muted">2025-08-27 04:25 UTC</div>
-        <p>03/31/25 - Expand your reach faster with Accelerate Accelerate is an AI-driven, objective-based campaign tool that merges LinkedIn’s professional data with your own (like retargeting or company lists) to pinpoint high-intent audiences. By introducing additional objectives, ad formats, and new audience inputs, you’ll have more ways to spark meaningful engagement and boost performance.</p>
+    </article>
+    
+    <article class="card" data-tags="linkedin official"
+             data-title-en="LinkedIn Marketing Solutions - Product Updates"
+             data-title-vi="LinkedIn Marketing Solutions - Product Updates"
+             data-summary-en="03/31/25 - Expand your reach faster with Accelerate Accelerate is an AI-driven, objective-based campaign tool that merges LinkedIn’s professional data with your own (like retargeting or company lists) to pinpoint high-intent audiences. By introducing additional objectives, ad formats, and new audience inputs, you’ll have more ways to spark meaningful engagement and boost performance."
+             data-summary-vi="03/31/25 - Expand your reach faster with Accelerate Accelerate is an AI-driven, objective-based campaign tool that merges LinkedIn’s professional data with your own (like retargeting or company lists) to pinpoint high-intent audiences. By introducing additional objectives, ad formats, and new audience inputs, you’ll have more ways to spark meaningful engagement and boost performance."
+             data-date="2025-08-27 04:25 UTC">
+      <div class="row">
+        <span class="chip">#linkedin</span><span class="chip">#official</span>
+        <span class="chip">✅ official</span>
+      </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://business.linkedin.com/marketing-solutions/product-updates" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
+      
+      <details class="diff-wrap">
+        <summary>Show diff</summary>
         <div class="diff">--- 
 +++ 
 @@ -0,0 +1,2 @@
 +03/31/25 - Expand your reach faster with Accelerate
 +Accelerate is an AI-driven, objective-based campaign tool that merges LinkedIn’s professional data with your own (like retargeting or company lists) to pinpoint high-intent audiences. By introducing additional objectives, ad formats, and new audience inputs, you’ll have more ways to spark meaningful engagement and boost performance.</div>
-      </div>
+      </details>
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">official</span>
-        </div>
-        <h3><a href="https://about.fb.com/news/category/technologies/instagram/" target="_blank" rel="noopener">Meta Newsroom - Instagram</a></h3>
-        <div class="muted">2025-08-27 04:25 UTC</div>
-        <p>New Instagram Features to Help You Connect We’re launching features that make it easier to connect with your friends on Instagram. To help personalize content, tailor and measure ads, and provide a safer experience, we use cookies. By clicking or navigating the site, you agree to allow our collection of information on and off Facebook through cookies. Learn more, including about available controls: Cookie Policy</p>
+    </article>
+    
+    <article class="card" data-tags="instagram official"
+             data-title-en="Meta Newsroom - Instagram"
+             data-title-vi="Meta Newsroom - Instagram"
+             data-summary-en="New Instagram Features to Help You Connect We’re launching features that make it easier to connect with your friends on Instagram. To help personalize content, tailor and measure ads, and provide a safer experience, we use cookies. By clicking or navigating the site, you agree to allow our collection of information on and off Facebook through cookies. Learn more, including about available controls: Cookie Policy"
+             data-summary-vi="New Instagram Features to Help You Connect We’re launching features that make it easier to connect with your friends on Instagram. To help personalize content, tailor and measure ads, and provide a safer experience, we use cookies. By clicking or navigating the site, you agree to allow our collection of information on and off Facebook through cookies. Learn more, including about available controls: Cookie Policy"
+             data-date="2025-08-27 04:25 UTC">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#official</span>
+        <span class="chip">✅ official</span>
+      </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://about.fb.com/news/category/technologies/instagram/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
+      
+      <details class="diff-wrap">
+        <summary>Show diff</summary>
         <div class="diff">--- 
 +++ 
 @@ -0,0 +1,3 @@
 +New Instagram Features to Help You Connect
 +We’re launching features that make it easier to connect with your friends on Instagram.
 +To help personalize content, tailor and measure ads, and provide a safer experience, we use cookies. By clicking or navigating the site, you agree to allow our collection of information on and off Facebook through cookies. Learn more, including about available controls: Cookie Policy</div>
-      </div>
+      </details>
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://ppc.land/meta-simplifies-instagram-and-marketing-api-integrations/" target="_blank" rel="noopener">PPC Land - Meta simplifies Instagram & Marketing API (summary)</a></h3>
-        <div class="muted">2025-08-27 04:26 UTC</div>
-        <p>Meta simplifies Instagram and marketing API integrations Meta updates Instagram and Marketing APIs to streamline developer workflows and improve data clarity. On January 21, 2025, Meta announced significant updates to the Instagram Graph API and Marketing API, aimed at simplifying integrations for developers and businesses. The changes include the deprecation of several legacy endpoints and the introduction of new fields and metrics to enhance functionality and data clarity. According to the ann</p>
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="PPC Land - Meta simplifies Instagram &amp; Marketing API (summary)"
+             data-title-vi="PPC Land - Meta simplifies Instagram &amp; Marketing API (summary)"
+             data-summary-en="Meta simplifies Instagram and marketing API integrations Meta updates Instagram and Marketing APIs to streamline developer workflows and improve data clarity. On January 21, 2025, Meta announced significant updates to the Instagram Graph API and Marketing API, aimed at simplifying integrations for developers and businesses. The changes include the deprecation of several legacy endpoints and the introduction of new fields and metrics to enhance functionality and data clarity. According to the ann"
+             data-summary-vi="Meta simplifies Instagram and marketing API integrations Meta updates Instagram and Marketing APIs to streamline developer workflows and improve data clarity. On January 21, 2025, Meta announced significant updates to the Instagram Graph API and Marketing API, aimed at simplifying integrations for developers and businesses. The changes include the deprecation of several legacy endpoints and the introduction of new fields and metrics to enhance functionality and data clarity. According to the ann"
+             data-date="2025-08-27 04:26 UTC">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
+      </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://ppc.land/meta-simplifies-instagram-and-marketing-api-integrations/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
+      
+      <details class="diff-wrap">
+        <summary>Show diff</summary>
         <div class="diff">--- 
 +++ 
 @@ -0,0 +1,80 @@
@@ -523,15 +712,30 @@
 +as a primary metric underscores the importance of understanding content performance in a way that aligns with user behavior.
 +Meta’s approach to simplifying API integrations and enhancing data clarity demonstrates a commitment to supporting developers and businesses in a rapidly changing digital landscape. The changes announced on January 21, 2025, are expected to have a significant impact on how developers interact with Instagram and Marketing APIs, paving the way for more efficient and effective solutions.
 +As the deadlines for migration approach, developers and businesses will need to carefully review the updates and plan their transitions accordingly. The availability of new fields and metrics, along with the deprecation of legacy objects, represents a significant step forward in the evolution of Meta’s developer tools.</div>
-      </div>
+      </details>
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://help.zoomph.com/instagram-metric-deprecation-views-transition-april-2025" target="_blank" rel="noopener">Zoomph - Instagram metric Views transition (Apr 2025)</a></h3>
-        <div class="muted">2025-08-27 04:26 UTC</div>
-        <p>Instagram Metric Deprecation & Views Transition (April 2025) Meta (Instagram’s parent company) is making important updates to how performance metrics are delivered via their API. These changes will directly affect metrics like Impressions and Plays. Please read below to learn more. To stay ahead of this update and ensure a smooth transition for our customers, Zoomph is updating its platform to support Meta’s new Views metric and remove deprecated metrics. What’s Changing in the Instagram API? Me</p>
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Zoomph - Instagram metric Views transition (Apr 2025)"
+             data-title-vi="Zoomph - Instagram metric Views transition (Apr 2025)"
+             data-summary-en="Instagram Metric Deprecation &amp; Views Transition (April 2025) Meta (Instagram’s parent company) is making important updates to how performance metrics are delivered via their API. These changes will directly affect metrics like Impressions and Plays. Please read below to learn more. To stay ahead of this update and ensure a smooth transition for our customers, Zoomph is updating its platform to support Meta’s new Views metric and remove deprecated metrics. What’s Changing in the Instagram API? Me"
+             data-summary-vi="Instagram Metric Deprecation &amp; Views Transition (April 2025) Meta (Instagram’s parent company) is making important updates to how performance metrics are delivered via their API. These changes will directly affect metrics like Impressions and Plays. Please read below to learn more. To stay ahead of this update and ensure a smooth transition for our customers, Zoomph is updating its platform to support Meta’s new Views metric and remove deprecated metrics. What’s Changing in the Instagram API? Me"
+             data-date="2025-08-27 04:26 UTC">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
+      </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://help.zoomph.com/instagram-metric-deprecation-views-transition-april-2025" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
+      
+      <details class="diff-wrap">
+        <summary>Show diff</summary>
         <div class="diff">--- 
 +++ 
 @@ -0,0 +1,60 @@
@@ -595,15 +799,30 @@
 +A: No.
 +Need Help?
 +If you have questions about these changes or need support with custom integrations or exports, please reach out to your Zoomph Account Manager or contact us at support@zoomph.com.</div>
-      </div>
+      </details>
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://later.com/blog/how-instagram-algorithm-works/" target="_blank" rel="noopener">Later - How the Instagram algorithm works (2025)</a></h3>
-        <div class="muted">2025-08-27 04:26 UTC</div>
-        <p>How does the Instagram algorithm actually work? It's a common question amongst social media managers, creators, and anyone trying to grow on social. We’re breaking down how the Instagram algorithm works in 2025, the top ranking factors, and our top tips for hacking the algorithm for more engagement for your brand. Let’s get started. Ready to work with the algorithm—not against it? Start your free trial with Later and schedule content that drives real engagement. Table of Contents</p>
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Later - How the Instagram algorithm works (2025)"
+             data-title-vi="Later - How the Instagram algorithm works (2025)"
+             data-summary-en="How does the Instagram algorithm actually work? It&#39;s a common question amongst social media managers, creators, and anyone trying to grow on social. We’re breaking down how the Instagram algorithm works in 2025, the top ranking factors, and our top tips for hacking the algorithm for more engagement for your brand. Let’s get started. Ready to work with the algorithm—not against it? Start your free trial with Later and schedule content that drives real engagement. Table of Contents"
+             data-summary-vi="How does the Instagram algorithm actually work? It&#39;s a common question amongst social media managers, creators, and anyone trying to grow on social. We’re breaking down how the Instagram algorithm works in 2025, the top ranking factors, and our top tips for hacking the algorithm for more engagement for your brand. Let’s get started. Ready to work with the algorithm—not against it? Start your free trial with Later and schedule content that drives real engagement. Table of Contents"
+             data-date="2025-08-27 04:26 UTC">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
+      </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://later.com/blog/how-instagram-algorithm-works/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
+      
+      <details class="diff-wrap">
+        <summary>Show diff</summary>
         <div class="diff">--- 
 +++ 
 @@ -0,0 +1,127 @@
@@ -734,210 +953,495 @@
 +The best way to gain an advantage with the Instagram algorithm in 2025?
 +Know your niche, create engaging content, and be consistent. The Instagram algorithm will do the rest.
 +TIP: Plan your Instagram content in advance so you can have an organized content calendar (and save time!). Start a free trial with Later today.</div>
-      </div>
+      </details>
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n10h6n/how_much_would_you_charge_a_small_business_for/" target="_blank" rel="noopener">How much would you charge a small business for two reels a week?</a></h3>
-        <div class="muted">2025-08-26T22:50:20+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>A couple I know has seen my social media work on different platforms and want to hire me, mostly for reels, for the coffee shop they own and are only wanting a couple a week. What would you charge for this? The reels I usually make are NOT super production heavy and are mainly short comedy skits I film on my iphone. I usually average 4k-25k views with a solid amount of organic engagement. I also live in the midwest so marketing/social media is not super lucrativ</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="How much would you charge a small business for two reels a week?"
+             data-title-vi="How much would you charge a small business for two reels a week?"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;A couple I know has seen my social media work on different platforms and want to hire me, mostly for reels, for the coffee shop they own and are only wanting a couple a week. What would you charge for this? The reels I usually make are NOT super production heavy and are mainly short comedy skits I film on my iphone. I usually average 4k-25k views with a solid amount of organic engagement. I also live in the midwest so marketing/social media is not super lucrativ"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;A couple I know has seen my social media work on different platforms and want to hire me, mostly for reels, for the coffee shop they own and are only wanting a couple a week. What would you charge for this? The reels I usually make are NOT super production heavy and are mainly short comedy skits I film on my iphone. I usually average 4k-25k views with a solid amount of organic engagement. I also live in the midwest so marketing/social media is not super lucrativ"
+             data-date="2025-08-26T22:50:20+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n10h6n/how_much_would_you_charge_a_small_business_for/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0dbve/why_isnt_my_instagram_growth_moving/" target="_blank" rel="noopener">Why isn’t my Instagram growth moving?</a></h3>
-        <div class="muted">2025-08-26T05:19:30+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>I’ve been posting regularly on Instagram and trying to stay consistent, but my followers are not growing. I’m experimenting with different types of content, hashtags, and posting times, but the results are still very slow.</p> <p>Has anyone faced the same issue and managed to break through? What strategies actually worked for you to grow your followers and engagement?</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https://www.reddit.com/user/sleeples</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Why isn’t my Instagram growth moving?"
+             data-title-vi="Why isn’t my Instagram growth moving?"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;I’ve been posting regularly on Instagram and trying to stay consistent, but my followers are not growing. I’m experimenting with different types of content, hashtags, and posting times, but the results are still very slow.&lt;/p&gt; &lt;p&gt;Has anyone faced the same issue and managed to break through? What strategies actually worked for you to grow your followers and engagement?&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/sleeples"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;I’ve been posting regularly on Instagram and trying to stay consistent, but my followers are not growing. I’m experimenting with different types of content, hashtags, and posting times, but the results are still very slow.&lt;/p&gt; &lt;p&gt;Has anyone faced the same issue and managed to break through? What strategies actually worked for you to grow your followers and engagement?&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/sleeples"
+             data-date="2025-08-26T05:19:30+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0dbve/why_isnt_my_instagram_growth_moving/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0gh6e/why_am_i_not_getting_likes_follows_or_shares_on/" target="_blank" rel="noopener">Why am I not getting likes, follows, or shares on my Instagram Reels?</a></h3>
-        <div class="muted">2025-08-26T08:42:40+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>Hey everyone,</p> <p>I’ve posted around 20 Reels on Instagram so far, but I keep noticing the same issue: • The views are not translating into engagement (very few likes, comments, or shares). • A big part of the viewers are non-followers (over 70%), but they don’t end up following me. • The stats don’t always match up – for example, the accounts reached vs. the number of views, and the engagement feels very low compared to the reach. • Even when I try to follow</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Why am I not getting likes, follows, or shares on my Instagram Reels?"
+             data-title-vi="Why am I not getting likes, follows, or shares on my Instagram Reels?"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;Hey everyone,&lt;/p&gt; &lt;p&gt;I’ve posted around 20 Reels on Instagram so far, but I keep noticing the same issue: • The views are not translating into engagement (very few likes, comments, or shares). • A big part of the viewers are non-followers (over 70%), but they don’t end up following me. • The stats don’t always match up – for example, the accounts reached vs. the number of views, and the engagement feels very low compared to the reach. • Even when I try to follow"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;Hey everyone,&lt;/p&gt; &lt;p&gt;I’ve posted around 20 Reels on Instagram so far, but I keep noticing the same issue: • The views are not translating into engagement (very few likes, comments, or shares). • A big part of the viewers are non-followers (over 70%), but they don’t end up following me. • The stats don’t always match up – for example, the accounts reached vs. the number of views, and the engagement feels very low compared to the reach. • Even when I try to follow"
+             data-date="2025-08-26T08:42:40+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0gh6e/why_am_i_not_getting_likes_follows_or_shares_on/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0gl0s/post_views_way_down_suddenly/" target="_blank" rel="noopener">Post views way down suddenly</a></h3>
-        <div class="muted">2025-08-26T08:49:55+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>My daughter is a gymnast and has a IG page, she’s been getting 1000-4000 views per video despite only having 200 followers, except her last 3 posts have struggled to get 400 views. Not sure what has happened, could her page be shadow banned or reported or something similar, it was a real sudden drop.</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https://www.reddit.com/user/Old_Bathroom_191"> /u/Old_Bathroom_191 </a> <br /> <span><a href="https://www</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Post views way down suddenly"
+             data-title-vi="Post views way down suddenly"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;My daughter is a gymnast and has a IG page, she’s been getting 1000-4000 views per video despite only having 200 followers, except her last 3 posts have struggled to get 400 views. Not sure what has happened, could her page be shadow banned or reported or something similar, it was a real sudden drop.&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/Old_Bathroom_191&#34;&gt; /u/Old_Bathroom_191 &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;My daughter is a gymnast and has a IG page, she’s been getting 1000-4000 views per video despite only having 200 followers, except her last 3 posts have struggled to get 400 views. Not sure what has happened, could her page be shadow banned or reported or something similar, it was a real sudden drop.&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/Old_Bathroom_191&#34;&gt; /u/Old_Bathroom_191 &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www"
+             data-date="2025-08-26T08:49:55+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0gl0s/post_views_way_down_suddenly/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n13r17/i_already_bored_my_contactsfriends_on_my/" target="_blank" rel="noopener">I already bored my contacts-friends on my Instagram. Every day I publish reels and stories</a></h3>
-        <div class="muted">2025-08-27T01:18:07+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>What do I do to hide my posts from my friends and have reach with other people?</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https://www.reddit.com/user/Abril-Online"> /u/Abril-Online </a> <br /> <span><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n13r17/i_already_bored_my_contactsfriends_on_my/">[link]</a></span> &#32; <span><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n13r17/i_already_bored_my_contactsfriends_on</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="I already bored my contacts-friends on my Instagram. Every day I publish reels and stories"
+             data-title-vi="I already bored my contacts-friends on my Instagram. Every day I publish reels and stories"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;What do I do to hide my posts from my friends and have reach with other people?&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/Abril-Online&#34;&gt; /u/Abril-Online &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n13r17/i_already_bored_my_contactsfriends_on_my/&#34;&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n13r17/i_already_bored_my_contactsfriends_on"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;What do I do to hide my posts from my friends and have reach with other people?&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/Abril-Online&#34;&gt; /u/Abril-Online &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n13r17/i_already_bored_my_contactsfriends_on_my/&#34;&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n13r17/i_already_bored_my_contactsfriends_on"
+             data-date="2025-08-27T01:18:07+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n13r17/i_already_bored_my_contactsfriends_on_my/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n1144z/public_bathroom_graffiti_got_me_103k_followersnow/" target="_blank" rel="noopener">Public bathroom graffiti got me 103K followers...now what? Help a clueless creator monetize this thing!</a></h3>
-        <div class="muted">2025-08-26T23:17:52+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p><strong>Scroll to bottom for TL;DR</strong></p> <p>I’m new to this subreddit so please excuse my ignorance if this isn’t where I should post this. My IG account is @ publicbathroomstilllife. I have over 103K followers on IG, 5,362 on Threads, and basically nothing on Facebook. I started the page in 2021 after visiting Pompeii and seeing the ancient graffiti there, and realizing that leaving our mark everywhere we go is in our DNA as humans. These days, public ba</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Public bathroom graffiti got me 103K followers...now what? Help a clueless creator monetize this thing!"
+             data-title-vi="Public bathroom graffiti got me 103K followers...now what? Help a clueless creator monetize this thing!"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;&lt;strong&gt;Scroll to bottom for TL;DR&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;I’m new to this subreddit so please excuse my ignorance if this isn’t where I should post this. My IG account is @ publicbathroomstilllife. I have over 103K followers on IG, 5,362 on Threads, and basically nothing on Facebook. I started the page in 2021 after visiting Pompeii and seeing the ancient graffiti there, and realizing that leaving our mark everywhere we go is in our DNA as humans. These days, public ba"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;&lt;strong&gt;Scroll to bottom for TL;DR&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;I’m new to this subreddit so please excuse my ignorance if this isn’t where I should post this. My IG account is @ publicbathroomstilllife. I have over 103K followers on IG, 5,362 on Threads, and basically nothing on Facebook. I started the page in 2021 after visiting Pompeii and seeing the ancient graffiti there, and realizing that leaving our mark everywhere we go is in our DNA as humans. These days, public ba"
+             data-date="2025-08-26T23:17:52+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n1144z/public_bathroom_graffiti_got_me_103k_followersnow/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0wee8/check_it_out_if_you_are_into_poems/" target="_blank" rel="noopener">Check it out if you are into poems</a></h3>
-        <div class="muted">2025-08-26T20:08:40+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>to anybody who's into poetries Hie I'm @theshrishtieffect on instagram. Please check it out if have a minute. And follow if you like the vibe.</p> <p>Thanks :)</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https://www.reddit.com/user/needsomegoodsleep"> /u/needsomegoodsleep </a> <br /> <span><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0wee8/check_it_out_if_you_are_into_poems/">[link]</a></span> &#32; <span><a href="https://www.re</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Check it out if you are into poems"
+             data-title-vi="Check it out if you are into poems"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;to anybody who&#39;s into poetries Hie I&#39;m @theshrishtieffect on instagram. Please check it out if have a minute. And follow if you like the vibe.&lt;/p&gt; &lt;p&gt;Thanks :)&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/needsomegoodsleep&#34;&gt; /u/needsomegoodsleep &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n0wee8/check_it_out_if_you_are_into_poems/&#34;&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href=&#34;https://www.re"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;to anybody who&#39;s into poetries Hie I&#39;m @theshrishtieffect on instagram. Please check it out if have a minute. And follow if you like the vibe.&lt;/p&gt; &lt;p&gt;Thanks :)&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/needsomegoodsleep&#34;&gt; /u/needsomegoodsleep &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n0wee8/check_it_out_if_you_are_into_poems/&#34;&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href=&#34;https://www.re"
+             data-date="2025-08-26T20:08:40+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0wee8/check_it_out_if_you_are_into_poems/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0w3lp/19k_insta/" target="_blank" rel="noopener">19k insta</a></h3>
-        <div class="muted">2025-08-26T19:57:31+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>dm serious buyers only </p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https://www.reddit.com/user/unknowndriverr"> /u/unknowndriverr </a> <br /> <span><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0w3lp/19k_insta/">[link]</a></span> &#32; <span><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0w3lp/19k_insta/">[comments]</a></span></p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="19k insta"
+             data-title-vi="19k insta"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;dm serious buyers only &lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/unknowndriverr&#34;&gt; /u/unknowndriverr &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n0w3lp/19k_insta/&#34;&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n0w3lp/19k_insta/&#34;&gt;[comments]&lt;/a&gt;&lt;/span&gt;"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;dm serious buyers only &lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/unknowndriverr&#34;&gt; /u/unknowndriverr &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n0w3lp/19k_insta/&#34;&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n0w3lp/19k_insta/&#34;&gt;[comments]&lt;/a&gt;&lt;/span&gt;"
+             data-date="2025-08-26T19:57:31+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0w3lp/19k_insta/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0unjj/experience_buying_a_username/" target="_blank" rel="noopener">Experience buying a username</a></h3>
-        <div class="muted">2025-08-26T19:01:54+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>Basically as the title says. I’m looking to buy a 4 letter username from someone and don’t want to get scammed.</p> <p>Are there any third party middlemen that anyone here has used that are trustworthy?</p> <p>I used to use SWAPD, but idk if they’re credible anymore.</p> <p>Thanks so much in advance to everyone. </p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https://www.reddit.com/user/frostbanker"> /u/frostbanker </a> <br /> <span><a href="https://</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Experience buying a username"
+             data-title-vi="Experience buying a username"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;Basically as the title says. I’m looking to buy a 4 letter username from someone and don’t want to get scammed.&lt;/p&gt; &lt;p&gt;Are there any third party middlemen that anyone here has used that are trustworthy?&lt;/p&gt; &lt;p&gt;I used to use SWAPD, but idk if they’re credible anymore.&lt;/p&gt; &lt;p&gt;Thanks so much in advance to everyone. &lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/frostbanker&#34;&gt; /u/frostbanker &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;Basically as the title says. I’m looking to buy a 4 letter username from someone and don’t want to get scammed.&lt;/p&gt; &lt;p&gt;Are there any third party middlemen that anyone here has used that are trustworthy?&lt;/p&gt; &lt;p&gt;I used to use SWAPD, but idk if they’re credible anymore.&lt;/p&gt; &lt;p&gt;Thanks so much in advance to everyone. &lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/frostbanker&#34;&gt; /u/frostbanker &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://"
+             data-date="2025-08-26T19:01:54+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0unjj/experience_buying_a_username/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0ohba/looking_to_chat_with_creators_about_how_you_shoot/" target="_blank" rel="noopener">Looking to chat with creators about how you shoot content</a></h3>
-        <div class="muted">2025-08-26T15:10:55+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>Hey everyone 👋</p> <p>I’m a Master’s student currently doing <strong>a small research project on how UGC creators shoot and frame their photos/videos</strong> — nothing professional, just the way you normally create content with your phone.</p> <p>👉 The chat would be casual (20–30 min, online video call).</p> <p>👉 As a thank-you, I’ll send a <strong>$15 amazon gift card</strong> or share <strong>a summary of insights</strong> from other creators (so you get insp</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Looking to chat with creators about how you shoot content"
+             data-title-vi="Looking to chat with creators about how you shoot content"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;Hey everyone 👋&lt;/p&gt; &lt;p&gt;I’m a Master’s student currently doing &lt;strong&gt;a small research project on how UGC creators shoot and frame their photos/videos&lt;/strong&gt; — nothing professional, just the way you normally create content with your phone.&lt;/p&gt; &lt;p&gt;👉 The chat would be casual (20–30 min, online video call).&lt;/p&gt; &lt;p&gt;👉 As a thank-you, I’ll send a &lt;strong&gt;$15 amazon gift card&lt;/strong&gt; or share &lt;strong&gt;a summary of insights&lt;/strong&gt; from other creators (so you get insp"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;Hey everyone 👋&lt;/p&gt; &lt;p&gt;I’m a Master’s student currently doing &lt;strong&gt;a small research project on how UGC creators shoot and frame their photos/videos&lt;/strong&gt; — nothing professional, just the way you normally create content with your phone.&lt;/p&gt; &lt;p&gt;👉 The chat would be casual (20–30 min, online video call).&lt;/p&gt; &lt;p&gt;👉 As a thank-you, I’ll send a &lt;strong&gt;$15 amazon gift card&lt;/strong&gt; or share &lt;strong&gt;a summary of insights&lt;/strong&gt; from other creators (so you get insp"
+             data-date="2025-08-26T15:10:55+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0ohba/looking_to_chat_with_creators_about_how_you_shoot/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0mhoy/has_anyone_else_tried_the_guaranteed_views_bix/" target="_blank" rel="noopener">Has anyone else tried the "Guaranteed Views" bix platform?</a></h3>
-        <div class="muted">2025-08-26T13:53:58+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p><strong>Background:</strong> I've been running my small business for about 2 years now and managed to grow to ~$200K in annual revenue. I have a goal to reach $300k and since my product is small and not very niche, I think influencer marketing can be very beneficial for a broader audience, and I have the marketing budget for it. The problem is that I've tried working with influencers before and it seems like I pay upfront and some of them don't perform like they</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Has anyone else tried the &#34;Guaranteed Views&#34; bix platform?"
+             data-title-vi="Has anyone else tried the &#34;Guaranteed Views&#34; bix platform?"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;&lt;strong&gt;Background:&lt;/strong&gt; I&#39;ve been running my small business for about 2 years now and managed to grow to ~$200K in annual revenue. I have a goal to reach $300k and since my product is small and not very niche, I think influencer marketing can be very beneficial for a broader audience, and I have the marketing budget for it. The problem is that I&#39;ve tried working with influencers before and it seems like I pay upfront and some of them don&#39;t perform like they"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;&lt;strong&gt;Background:&lt;/strong&gt; I&#39;ve been running my small business for about 2 years now and managed to grow to ~$200K in annual revenue. I have a goal to reach $300k and since my product is small and not very niche, I think influencer marketing can be very beneficial for a broader audience, and I have the marketing budget for it. The problem is that I&#39;ve tried working with influencers before and it seems like I pay upfront and some of them don&#39;t perform like they"
+             data-date="2025-08-26T13:53:58+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0mhoy/has_anyone_else_tried_the_guaranteed_views_bix/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0i22t/is_there_any_way_to_fix_this_problem/" target="_blank" rel="noopener">Is there any way to fix this problem?</a></h3>
-        <div class="muted">2025-08-26T10:23:00+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>I run ads for my Instagram business page. We make appointments through chat. People are clicking on the ads and they respond to that automated message but after the robot sends the first message we can't message them anymore with more details. We get &quot;You can't message this account unless they follow you.&quot; Is there any ways to run ads and get people in our dms?</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https://www.reddit.com/user/Acrob</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Is there any way to fix this problem?"
+             data-title-vi="Is there any way to fix this problem?"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;I run ads for my Instagram business page. We make appointments through chat. People are clicking on the ads and they respond to that automated message but after the robot sends the first message we can&#39;t message them anymore with more details. We get &amp;quot;You can&#39;t message this account unless they follow you.&amp;quot; Is there any ways to run ads and get people in our dms?&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/Acrob"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;I run ads for my Instagram business page. We make appointments through chat. People are clicking on the ads and they respond to that automated message but after the robot sends the first message we can&#39;t message them anymore with more details. We get &amp;quot;You can&#39;t message this account unless they follow you.&amp;quot; Is there any ways to run ads and get people in our dms?&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/Acrob"
+             data-date="2025-08-26T10:23:00+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0i22t/is_there_any_way_to_fix_this_problem/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0hbxf/instagram_views_dramatically_dropped/" target="_blank" rel="noopener">Instagram Views Dramatically Dropped</a></h3>
-        <div class="muted">2025-08-26T09:38:45+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>Hello! I’m managing a client account that typically receives between 1.5k and 3k views, everyday twice a day, also have a good engagement averaging 100-190 likes and at least 2-3 saves</p> <p>However, since the recent updates on Instagram, our views have dramatically dropped to around 200, with the worst being as low as 100. </p> <p>Does anyone know what might have caused this? </p> <p>Thank you!</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https:/</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Instagram Views Dramatically Dropped"
+             data-title-vi="Instagram Views Dramatically Dropped"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;Hello! I’m managing a client account that typically receives between 1.5k and 3k views, everyday twice a day, also have a good engagement averaging 100-190 likes and at least 2-3 saves&lt;/p&gt; &lt;p&gt;However, since the recent updates on Instagram, our views have dramatically dropped to around 200, with the worst being as low as 100. &lt;/p&gt; &lt;p&gt;Does anyone know what might have caused this? &lt;/p&gt; &lt;p&gt;Thank you!&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https:/"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;Hello! I’m managing a client account that typically receives between 1.5k and 3k views, everyday twice a day, also have a good engagement averaging 100-190 likes and at least 2-3 saves&lt;/p&gt; &lt;p&gt;However, since the recent updates on Instagram, our views have dramatically dropped to around 200, with the worst being as low as 100. &lt;/p&gt; &lt;p&gt;Does anyone know what might have caused this? &lt;/p&gt; &lt;p&gt;Thank you!&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https:/"
+             data-date="2025-08-26T09:38:45+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0hbxf/instagram_views_dramatically_dropped/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n138lg/i_need_help_on_where_to_start/" target="_blank" rel="noopener">I need help on where to start….</a></h3>
-        <div class="muted">2025-08-27T00:54:02+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>I want to start building Instagram pages for individuals. How do I start or where do I start from learning the platform? I already know about retention editing but how do I maybe study viral content? I don’t see a filter option to even sort to the best content on the platform for a certain niche or a search term if anyone can give me a YouTube channel or Instagram page or any sort of link, I can use to study the platform and how it works so I can maybe build peo</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="I need help on where to start…."
+             data-title-vi="I need help on where to start…."
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;I want to start building Instagram pages for individuals. How do I start or where do I start from learning the platform? I already know about retention editing but how do I maybe study viral content? I don’t see a filter option to even sort to the best content on the platform for a certain niche or a search term if anyone can give me a YouTube channel or Instagram page or any sort of link, I can use to study the platform and how it works so I can maybe build peo"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;I want to start building Instagram pages for individuals. How do I start or where do I start from learning the platform? I already know about retention editing but how do I maybe study viral content? I don’t see a filter option to even sort to the best content on the platform for a certain niche or a search term if anyone can give me a YouTube channel or Instagram page or any sort of link, I can use to study the platform and how it works so I can maybe build peo"
+             data-date="2025-08-27T00:54:02+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n138lg/i_need_help_on_where_to_start/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n12amp/is_it_worth_using_myinstafollowcom_to_fix_low/" target="_blank" rel="noopener">Is It Worth Using Myinstafollow.com To Fix Low Instagram Followers?</a></h3>
-        <div class="muted">2025-08-27T00:10:15+00:00</div>
-        <p>&#32; submitted by &#32; <a href="https://www.reddit.com/user/Fabulous_Raise_3888"> /u/Fabulous_Raise_3888 </a> <br /> <span><a href="https://myinstafollow.com">[link]</a></span> &#32; <span><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n12amp/is_it_worth_using_myinstafollowcom_to_fix_low/">[comments]</a></span></p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Is It Worth Using Myinstafollow.com To Fix Low Instagram Followers?"
+             data-title-vi="Is It Worth Using Myinstafollow.com To Fix Low Instagram Followers?"
+             data-summary-en="&amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/Fabulous_Raise_3888&#34;&gt; /u/Fabulous_Raise_3888 &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://myinstafollow.com&#34;&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n12amp/is_it_worth_using_myinstafollowcom_to_fix_low/&#34;&gt;[comments]&lt;/a&gt;&lt;/span&gt;"
+             data-summary-vi="&amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/Fabulous_Raise_3888&#34;&gt; /u/Fabulous_Raise_3888 &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://myinstafollow.com&#34;&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n12amp/is_it_worth_using_myinstafollowcom_to_fix_low/&#34;&gt;[comments]&lt;/a&gt;&lt;/span&gt;"
+             data-date="2025-08-27T00:10:15+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n12amp/is_it_worth_using_myinstafollowcom_to_fix_low/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n10d2m/hexrate_unavailable/" target="_blank" rel="noopener">Hexrate unavailable</a></h3>
-        <div class="muted">2025-08-26T22:45:30+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>I’ve been seeing this message all day: <em>“Payments are temporarily unavailable due to maintenance. We’ll notify you by email once they’re re-enabled.”</em><br /> Has anyone heard any updates or have additional insight?</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https://www.reddit.com/user/Soft_Door_6476"> /u/Soft_Door_6476 </a> <br /> <span><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n10d2m/hexrate_unavailable/">[link]</a></s</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Hexrate unavailable"
+             data-title-vi="Hexrate unavailable"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;I’ve been seeing this message all day: &lt;em&gt;“Payments are temporarily unavailable due to maintenance. We’ll notify you by email once they’re re-enabled.”&lt;/em&gt;&lt;br /&gt; Has anyone heard any updates or have additional insight?&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/Soft_Door_6476&#34;&gt; /u/Soft_Door_6476 &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n10d2m/hexrate_unavailable/&#34;&gt;[link]&lt;/a&gt;&lt;/s"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;I’ve been seeing this message all day: &lt;em&gt;“Payments are temporarily unavailable due to maintenance. We’ll notify you by email once they’re re-enabled.”&lt;/em&gt;&lt;br /&gt; Has anyone heard any updates or have additional insight?&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/Soft_Door_6476&#34;&gt; /u/Soft_Door_6476 &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n10d2m/hexrate_unavailable/&#34;&gt;[link]&lt;/a&gt;&lt;/s"
+             data-date="2025-08-26T22:45:30+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n10d2m/hexrate_unavailable/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0z7wf/question_about_insights_and_views_on_ig_business/" target="_blank" rel="noopener">Question about Insights and Views on IG business profile</a></h3>
-        <div class="muted">2025-08-26T21:58:02+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>Hey all!</p> <p>So in the Insights of my business profile, I can see the number of profile Views for a given time period. Below it, I can see percentages of Top Cities and Countries.</p> <p>My question is - does this percentage refer to the % of views that come from that place, or the % of individual users?</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https://www.reddit.com/user/MyOtherSonGregaro"> /u/MyOtherSonGregaro </a> <br /> <span><a href="ht</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Question about Insights and Views on IG business profile"
+             data-title-vi="Question about Insights and Views on IG business profile"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;Hey all!&lt;/p&gt; &lt;p&gt;So in the Insights of my business profile, I can see the number of profile Views for a given time period. Below it, I can see percentages of Top Cities and Countries.&lt;/p&gt; &lt;p&gt;My question is - does this percentage refer to the % of views that come from that place, or the % of individual users?&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/MyOtherSonGregaro&#34;&gt; /u/MyOtherSonGregaro &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;ht"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;Hey all!&lt;/p&gt; &lt;p&gt;So in the Insights of my business profile, I can see the number of profile Views for a given time period. Below it, I can see percentages of Top Cities and Countries.&lt;/p&gt; &lt;p&gt;My question is - does this percentage refer to the % of views that come from that place, or the % of individual users?&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/MyOtherSonGregaro&#34;&gt; /u/MyOtherSonGregaro &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;ht"
+             data-date="2025-08-26T21:58:02+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0z7wf/question_about_insights_and_views_on_ig_business/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0xutp/i_am_about_to_start_my_qsr_restaurant_next_month/" target="_blank" rel="noopener">I am about to start my QSR restaurant next month , Can you give me some fun marketing ideas?</a></h3>
-        <div class="muted">2025-08-26T21:04:08+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>I want to grow organically, also do some ads to boost that the engagement and visibility.</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https://www.reddit.com/user/Ok_Emphasis_6757"> /u/Ok_Emphasis_6757 </a> <br /> <span><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0xutp/i_am_about_to_start_my_qsr_restaurant_next_month/">[link]</a></span> &#32; <span><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0xutp/i_am_about_</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="I am about to start my QSR restaurant next month , Can you give me some fun marketing ideas?"
+             data-title-vi="I am about to start my QSR restaurant next month , Can you give me some fun marketing ideas?"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;I want to grow organically, also do some ads to boost that the engagement and visibility.&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/Ok_Emphasis_6757&#34;&gt; /u/Ok_Emphasis_6757 &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n0xutp/i_am_about_to_start_my_qsr_restaurant_next_month/&#34;&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n0xutp/i_am_about_"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;I want to grow organically, also do some ads to boost that the engagement and visibility.&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/Ok_Emphasis_6757&#34;&gt; /u/Ok_Emphasis_6757 &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n0xutp/i_am_about_to_start_my_qsr_restaurant_next_month/&#34;&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n0xutp/i_am_about_"
+             data-date="2025-08-26T21:04:08+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0xutp/i_am_about_to_start_my_qsr_restaurant_next_month/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0w7tz/ig_followers_broken/" target="_blank" rel="noopener">ig followers broken?</a></h3>
-        <div class="muted">2025-08-26T20:01:47+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>My account shows 8,090 followers rn even though i removed about 30 deactivated accounts yesterday (It showed 8,060 last night). Idk why this happens every time i removed inactive followers, how do i fix this?😭</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https://www.reddit.com/user/bobaball2003"> /u/bobaball2003 </a> <br /> <span><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0w7tz/ig_followers_broken/">[link]</a></span> &#32; <spa</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="ig followers broken?"
+             data-title-vi="ig followers broken?"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;My account shows 8,090 followers rn even though i removed about 30 deactivated accounts yesterday (It showed 8,060 last night). Idk why this happens every time i removed inactive followers, how do i fix this?😭&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/bobaball2003&#34;&gt; /u/bobaball2003 &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n0w7tz/ig_followers_broken/&#34;&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;spa"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;My account shows 8,090 followers rn even though i removed about 30 deactivated accounts yesterday (It showed 8,060 last night). Idk why this happens every time i removed inactive followers, how do i fix this?😭&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/bobaball2003&#34;&gt; /u/bobaball2003 &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.com/r/InstagramMarketing/comments/1n0w7tz/ig_followers_broken/&#34;&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32; &lt;spa"
+             data-date="2025-08-26T20:01:47+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0w7tz/ig_followers_broken/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-      <div class="card">
-        <div>
-          <span class="tag">instagram</span><span class="tag">community</span>
-        </div>
-        <h3><a href="https://www.reddit.com/r/InstagramMarketing/comments/1n0uajr/why_are_more_posts_here_look_like_scam_but_just/" target="_blank" rel="noopener">Why are more posts here look like scam, but just texts no proof?</a></h3>
-        <div class="muted">2025-08-26T18:48:10+00:00</div>
-        <p><!-- SC_OFF --><div class="md"><p>They all start with this huge chart and focus on how many followers they got in a short time, and then AMA. Purposefully ignoring a couple key things, their accs link, anything make you reach out to them.</p> <p>I was thinking there'll be more about: ask help, Ig strategies or somethin...</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https://www.reddit.com/user/chinsngbcharakhun"> /u/chinsngbcharakhun </a> <br /> <span><a href="https://www.reddit.co</p>
-        
+    </article>
+    
+    <article class="card" data-tags="instagram community"
+             data-title-en="Why are more posts here look like scam, but just texts no proof?"
+             data-title-vi="Why are more posts here look like scam, but just texts no proof?"
+             data-summary-en="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;They all start with this huge chart and focus on how many followers they got in a short time, and then AMA. Purposefully ignoring a couple key things, their accs link, anything make you reach out to them.&lt;/p&gt; &lt;p&gt;I was thinking there&#39;ll be more about: ask help, Ig strategies or somethin...&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/chinsngbcharakhun&#34;&gt; /u/chinsngbcharakhun &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.co"
+             data-summary-vi="&lt;!-- SC_OFF --&gt;&lt;div class=&#34;md&#34;&gt;&lt;p&gt;They all start with this huge chart and focus on how many followers they got in a short time, and then AMA. Purposefully ignoring a couple key things, their accs link, anything make you reach out to them.&lt;/p&gt; &lt;p&gt;I was thinking there&#39;ll be more about: ask help, Ig strategies or somethin...&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&#34;https://www.reddit.com/user/chinsngbcharakhun&#34;&gt; /u/chinsngbcharakhun &lt;/a&gt; &lt;br /&gt; &lt;span&gt;&lt;a href=&#34;https://www.reddit.co"
+             data-date="2025-08-26T18:48:10+00:00">
+      <div class="row">
+        <span class="chip">#instagram</span><span class="chip">#community</span>
+        <span class="chip">💬 community</span>
       </div>
+
+      <h3 class="title">
+        <a class="tlink" href="https://www.reddit.com/r/InstagramMarketing/comments/1n0uajr/why_are_more_posts_here_look_like_scam_but_just/" target="_blank" rel="noopener"></a>
+      </h3>
+      <div class="muted date"></div>
+      <p class="sum"></p>
+
       
-    </div>
+    </article>
+    
   </main>
-  <footer>Made by 126V • Tự động hoá Python + GitHub Actions + Pages</footer>
+
+  <footer>Made by 126V • Python + GitHub Actions + Pages • <a href="index.html">reload</a></footer>
+
+  <script>
+    const $ = sel=>document.querySelector(sel);
+    const $$ = sel=>Array.from(document.querySelectorAll(sel));
+
+    // State
+    let state = {
+      lang: localStorage.getItem("radar-lang") || "en",
+      showDiff: false,
+      sort: "newest",  // newest|oldest
+      q: "",
+      theme: localStorage.getItem("radar-theme") || "dark"
+    };
+
+    // Apply theme
+    document.documentElement.setAttribute("data-theme", state.theme);
+
+    // Lang buttons
+    const btnVi = $("#lang-vi"), btnEn = $("#lang-en");
+    function updateLangButtons(){
+      btnVi.classList.toggle("active", state.lang==="vi");
+      btnEn.classList.toggle("active", state.lang==="en");
+    }
+    updateLangButtons();
+
+    function renderCard(card){
+      // Title/Summary by lang
+      const title = card.dataset["title"+(state.lang==="vi"?"Vi":"En")] || "";
+      const summary = card.dataset["summary"+(state.lang==="vi"?"Vi":"En")] || "";
+      card.querySelector(".tlink").textContent = title || "(no title)";
+      card.querySelector(".sum").textContent = summary;
+      card.querySelector(".date").textContent = card.dataset.date;
+
+      // Diff visibility
+      const wrap = card.querySelector(".diff-wrap");
+      if (wrap){
+        if (state.showDiff) wrap.classList.remove("hide");
+        else wrap.classList.add("hide");
+      }
+
+      // Search filter
+      const hay = (title+" "+summary+" "+card.dataset.tags).toLowerCase();
+      const ok = hay.includes(state.q.toLowerCase());
+      card.style.display = ok ? "" : "none";
+    }
+
+    function renderAll(){
+      // Sort
+      const grid = $("#grid");
+      const cards = $$("#grid article");
+      cards.sort((a,b)=>{
+        const da = new Date(a.dataset.date || 0).getTime();
+        const db = new Date(b.dataset.date || 0).getTime();
+        return state.sort==="newest" ? db-da : da-db;
+      }).forEach(c=>grid.appendChild(c));
+
+      // Update each
+      cards.forEach(renderCard);
+    }
+
+    // Wire up controls
+    $("#q").addEventListener("input", e=>{ state.q = e.target.value; renderAll(); });
+    $("#toggle-diff").addEventListener("click", ()=>{
+      state.showDiff = !state.showDiff;
+      renderAll();
+    });
+    $("#sort").addEventListener("click", ()=>{
+      state.sort = state.sort==="newest" ? "oldest" : "newest";
+      $("#sort").textContent = "Sort: " + (state.sort==="newest"?"Newest":"Oldest");
+      renderAll();
+    });
+    $("#theme").addEventListener("click", ()=>{
+      state.theme = (state.theme==="dark") ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", state.theme);
+      localStorage.setItem("radar-theme", state.theme);
+    });
+
+    btnVi.addEventListener("click", ()=>{ state.lang="vi"; localStorage.setItem("radar-lang","vi"); updateLangButtons(); renderAll(); });
+    btnEn.addEventListener("click", ()=>{ state.lang="en"; localStorage.setItem("radar-lang","en"); updateLangButtons(); renderAll(); });
+
+    // Initial render
+    renderAll();
+  </script>
 </body>
 </html>
